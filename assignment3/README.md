@@ -28,10 +28,13 @@ cpuid.c->
 Count the time for all exit relate to KVM
 
 ### Result->
-
+![](https://github.com/kdlasbang/cmpe283/blob/main/assignment3/IMG_6073.jpg)
+![](https://github.com/kdlasbang/cmpe283/blob/main/assignment3/IMG_6074.jpg)
+![](https://github.com/kdlasbang/cmpe283/blob/main/assignment3/IMG_6075.jpg)
+![](https://github.com/kdlasbang/cmpe283/blob/main/assignment3/IMG_6076.jpg)
 
 ## Response to question ->
 ### Comment on the frequency of exits – 1. does the number of exits increase at a stable rate? Or are there more exits performed during certain VM operations? Approximately how many exits does a full VM boot entail? 2.Of the exit types defined in the SDM, which are the most frequent? Least? 
 
-#### 1.
-#### 2.
+#### 1. Yes. I tried twice. There is no difference between the first one and the second one.  The approximate exit number is 300.
+#### 2. The most frequent type is External interrupt, WRMSR and the least type is MOV DR
