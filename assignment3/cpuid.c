@@ -39,6 +39,7 @@ EXPORT_SYMBOL(exit_time);
 atomic64_t single_exit_counter[69];
 EXPORT_SYMBOL(single_exit_counter);
 
+
 static u32 xstate_required_size(u64 xstate_bv, bool compacted)
 {
 	int feature_bit = 0;
@@ -1155,46 +1156,45 @@ int kvm_emulate_cpuid(struct kvm_vcpu *vcpu)
 		edx = 0;
   		printk(KERN_INFO "Exit time is  = %llu", elapsed_time);
 	}
-       
-
+	
+	
 	else if(eax == 0x4FFFFFFE){
 	
 	uint32_t counter;
 	// if ecx contains a value not defined by the SDM ->
-	if(ecx == 35 || ecx == 38 || ecx == 42 || ecx == 65 || ecx > 68 || ecx < 0 ){
-		printk(KERN_INFO "exit reason number = %u not defined by the SDM", ecx);
-		eax = 0;	
-		ebx = 0;
-		ecx = 0;
-		edx = 0xFFFFFFFF;
-	}
-	else{
-		if(eax==3 || eax == 4 || eax == 5|| eax == 6|| eax == 11|| eax == 16|| eax == 17|| eax == 33 || eax == 34|| eax == 51|| eax == 54 || eax == 63|| eax == 64|| eax == 66|| eax == 67|| eax == 68){
-		//exit type not enabled in KVM
-		printk(KERN_INFO "exit reason number = %u not enabled in KVM", ecx);
-		eax = 0;
-		ebx = 0;
-		ecx = 0;
-		edx = 0;
+		if(ecx == 35 || ecx == 38 || ecx == 42 || ecx == 65 || ecx > 68  ){
+			printk(KERN_INFO "exit reason number = %u not defined by the SDM", ecx);
+			eax = 0;	
+			ebx = 0;
+			ecx = 0;
+			edx = 0xFFFFFFFF;
 		}
 		else{
-		//return exit count
-			eax = atomic64_read(&single_exit_counter[ecx]);
-			printk(KERN_INFO "exit reason number = %u and exit counter eax = %u", ecx, eax);
-			counter = atomic64_read(&single_exit_counter[ecx]); 
-			printk(KERN_INFO "exit number %d exits = %d\n" , ecx, counter);
-		
+			if(eax==3 || eax == 4 || eax == 5|| eax == 6|| eax == 11|| eax == 16|| eax == 17|| eax == 33 || eax == 34|| eax == 51|| eax == 54 || eax == 63|| eax == 64|| eax == 66|| eax == 67|| eax == 68){
+			//exit type not enabled in KVM
+			printk(KERN_INFO "exit reason number = %u not enabled in KVM", ecx);
+			eax = 0;
+			ebx = 0;
+			ecx = 0;
+			edx = 0;
+			}
+			else{
+			//return exit count
+				eax = atomic64_read(&single_exit_counter[ecx]);
+				printk(KERN_INFO "exit reason number = %u and exit counter eax = %u", ecx, eax);
+				counter = atomic64_read(&single_exit_counter[ecx]); 
+				printk(KERN_INFO "exit number %d exits = %d\n" , ecx, counter);
+			
+			
+			}
 		
 		}
-	
-	}
-	
-	
-	
-	
-	}
 
-	else {
+	}
+	
+	
+	
+	 else {
     		kvm_cpuid(vcpu, &eax, &ebx, &ecx, &edx, false);
 	}
 	

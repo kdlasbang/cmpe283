@@ -8,8 +8,14 @@
 ### replace the new vmx.c with linux/arch/x86/kvm/vmx/vmx.c
 ### replace the new cpuid.c with linux/arch/x86/kvm/cpuid.c
 ### Rebuild the kernal as assignment 2 ->
-### sudo bash
-### make -j 3 modules && make -j 3 && sudo make modules_install && sudo make install
+### Pro way to rebuild->(as we only modify the file inside kvm filedir)
+### sudo rmmod kvm_intel
+### sudo rmmod kvm
+### sudo make -j 3 modules M=arch/x86/kvm
+### sudo insmod arch/x86/kvm/kvm.ko
+### sudo insmod arch/x86/kvm/kvm-intel.ko
+### normal way to rebuild -> [#sudo bash
+### make -j 3 modules && make -j 3 && sudo make modules_install && sudo make install]
 ### reboot and test in the nested VM
 
 ## Modification and Test Result
