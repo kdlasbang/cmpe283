@@ -24,6 +24,7 @@
 For exit types not enabled in KVM, return 0s in all four registers
 
 cpuid.c->
+![](https://github.com/kdlasbang/cmpe283/blob/main/assignment3/%E6%88%AA%E5%B1%8F2021-05-06%E4%B8%8B%E5%8D%881.30.15.png)
 
 Count the time for all exit relate to KVM
 
