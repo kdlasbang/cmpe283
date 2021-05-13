@@ -41,6 +41,6 @@ While in shadow paging, CR3 exits, Page Fault Exits and TLB Flush exits are ensu
  
  ## 4.What changed between the two runs (ept vs no-ept)?
  
-The count of exits in no-ept(shadow paging) one increase obviously than in ept(nested paging) one. 
+The count of exits in no-ept(shadow paging) one obviously larger than in ept(nested paging) one. 
  
  
