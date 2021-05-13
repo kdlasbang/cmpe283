@@ -1162,7 +1162,7 @@ int kvm_emulate_cpuid(struct kvm_vcpu *vcpu)
 	
 	uint32_t counter;
 	// if ecx contains a value not defined by the SDM ->
-		if(ecx == 35 || ecx == 38 || ecx == 42 || ecx == 65 || ecx > 68  ){
+		if(ecx == 35 || ecx == 38 || ecx == 42 || ecx == 65 || ecx > 68 ||ecx<0 ){
 			printk(KERN_INFO "exit reason number = %u not defined by the SDM", ecx);
 			eax = 0;	
 			ebx = 0;
